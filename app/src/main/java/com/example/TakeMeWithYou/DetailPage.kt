@@ -1,15 +1,40 @@
 package com.example.TakeMeWithYou
 
+import android.content.ClipData.Item
+import android.content.Intent
+import android.icu.number.Scale.none
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class DetailPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_page_activity)
         setCustomToolbar(R.id.toolbar)
+
+        overridePendingTransition(R.anim.from_left_enter, R.anim.none);
+
+        val bottomnavi = findViewById<BottomNavigationView>(R.id.bn_)
+        bottomnavi.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu_detail -> {
+                    startActivity(Intent(this, DetailPage::class.java))
+                    true
+                }
+                R.id.menu_main -> {
+                    startActivity(Intent(this, MainPageActivity::class.java))
+                    true
+                }
+                R.id.menu_myPage -> {
+                    startActivity(Intent(this, MyPageActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
 
     }
 
